@@ -1,0 +1,24 @@
+@model GiftViewModel
+
+<div>
+    <label asp-for="Title"></label>: <input type="text" asp-for="Title" />
+</div>
+
+<div>
+    <label asp-for="Description"></label>: <input type="text" asp-for="Description" />
+</div>
+
+<div>
+    <label asp-for="URL"></label>: <input type="text" asp-for="URL" />
+</div>
+
+<div>
+    <label asp-for="Priority"></label>: <input type="text" asp-for="Priority" />
+</div>
+
+<div>
+    <label asp-for="UserId"></label>
+    <select asp-for="UserId" asp-items="@(new SelectList(MockData.Users, "Id", "FullName"))">
+        <option>Please select one</option>
+    </select>
+</div>
