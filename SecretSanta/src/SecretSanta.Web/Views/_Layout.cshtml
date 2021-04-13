@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UserGroup - @ViewBag.Title</title>
+
+</head>
+<body>
+    <nav class="bg-green-500" >
+        <ul class="flex text-white">
+            <li><a class="inline-block p-6 leading-10 text-xl" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a class="inline-block p-6 leading-10" asp-controller="Users" asp-action="Index">Users</a></li>
+            <li><a class="inline-block p-6 leading-10" asp-controller="Groups" asp-action="Index">Groups</a></li>
+            <li><a class="inline-block p-6 leading-10" asp-controller="Gifts" asp-action="Index">Gifts</a></li>
+        </ul>
+    </nav>
+    @RenderBody()
+
+</body>
+</html>
