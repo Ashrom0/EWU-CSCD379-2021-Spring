@@ -13,8 +13,8 @@
     }
 }
 
-@layer utilities {
-    .input-validation-error {
-        @apply border-red-400 focus:border-red-800;
+@layer utilities{
+    .input-validation-error{
+        @apply border-red-200 focus:border-red-800; 
     }
 } 

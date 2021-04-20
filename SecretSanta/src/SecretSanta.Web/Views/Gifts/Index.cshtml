@@ -1,20 +1,23 @@
 @{
     ViewBag.Title = "Gifts";
 }
+
 @model List<GiftViewModel>
 
 @{int counter = 0;}
 
 <section class="grid grid-cols-1 sm:grid-cols-3">
-@foreach(var giftViewModel in Model) {
-        <a asp-action="Edit" asp-route-id=@counter>
-    <section class="border-gray-500 border-2 p-6 m-5 rounded-lg">
-        @giftViewModel.Title
-            <form asp-action="Delete" asp-route-id=@counter method="post">
-                <button onclick="return confirm('You are about to delete @giftViewModel.Title, are you sure you want to do this?');"><i class="fas fa-times text-2xl align-middle h-full"></i></button>
-            </form>
-        @{counter++;}
-    </section></a>
-
+    @foreach(var giftViewModel in Model) {
+    <a asp-action="Edit" asp-route-id=@counter>
+        <section class="border-gray-500 border-2 p-6 m-5 rounded-lg">
+            @giftViewModel.Title
+                <form asp-action="Delete" asp-route-id=@counter method="post">
+                    <button onclick="return confirm('You are about to delete @giftViewModel.Title, are you sure you want to do this?');"><i class="fas fa-times text-2xl align-middle h-full"></i></button>   
+                </form>
+            @{counter++;}
+        </section>
+    </a>
     }
 </section>
+
+<a asp-action="Create">Create</a>

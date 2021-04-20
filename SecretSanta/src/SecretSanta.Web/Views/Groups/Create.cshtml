@@ -7,5 +7,5 @@
 <form asp-controller="Groups" asp-action="Create" method="post">
     @await Html.PartialAsync("_CreateOrEdit")
     <button class="bg-red-500 hover:bg-red 200 text-white font-bold py-2 px-4 rounded">Create</button>
-    <a asp-controller="Groups" asp-action="Index"><button class="bg-red-500 hover:bg-red-200 text-white font-bold py-2 px-4 rounded">Cancel</button></a>
+    <a asp-controller="Groups" asp-action="Index" class="bg-red-500 hover:bg-red-200 text-white font-bold py-2 px-4 rounded">Cancel</a>
 </form>
