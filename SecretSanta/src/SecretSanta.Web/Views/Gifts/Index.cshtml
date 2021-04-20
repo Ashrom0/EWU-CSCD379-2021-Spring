@@ -11,7 +11,7 @@
     <section class="border-gray-500 border-2 p-6 m-5 rounded-lg">
         @giftViewModel.Title
             <form asp-action="Delete" asp-route-id=@counter method="post">
-                <button onclick="return confirm('You are about to delete @giftViewModel.Title, are you sure you want to do this?');"><i class="fas fa-times text-2xl align-middle h-full">X</i></button>
+                <button onclick="return confirm('You are about to delete @giftViewModel.Title, are you sure you want to do this?');"><i class="fas fa-times text-2xl align-middle h-full"></i></button>
             </form>
         @{counter++;}
     </section></a>
