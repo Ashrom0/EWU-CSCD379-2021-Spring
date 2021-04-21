@@ -11,7 +11,6 @@ namespace SecretSanta.Web.ViewModels
         public string? Url { get; set; } = "";
  
         public int Priority { get; set; }
-
         [Display(Name="User")]
         public int UserId { get; set; }
     }
