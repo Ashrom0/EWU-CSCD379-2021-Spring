@@ -6,8 +6,8 @@
 ### GET {{host}}/api/users
 GET {{host}}/api/users
 
-### GET {{host}}/api/users/1
-GET {{host}}/api/users/1
+### GET {{host}}/api/users/3
+GET {{host}}/api/users/3
 
 ### DELETE {{host}}/api/users/0
 DELETE {{host}}/api/users/0
@@ -17,7 +17,7 @@ POST {{host}}/api/users
 Content-Type: {{contentType}}
 
 {
-"id" : 2, "FirstName": "Bill", "LastName": "Evans"
+"id" : 1, "FirstName": "Keith", "LastName": "Emerson"
 
 }
 
@@ -26,6 +26,6 @@ PUT {{host}}/api/users/1
 Content-Type: {{contentType}}
 
 {
-"id" : 43, "FirstName": "John", "LastName": "Lord"
+"id" : 1, "FirstName": "John", "LastName": "Lord"
 
 }
