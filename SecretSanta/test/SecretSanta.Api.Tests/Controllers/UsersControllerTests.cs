@@ -75,7 +75,7 @@ namespace SecretSanta.Api.Tests.Controllers
             repository.GetItemUser = expectedUser;
 
             //Act
-            ActionResult<user?> result = controller.Get(-1);
+            ActionResult<User?> result = controller.Get(-1);
 
             //Assert
             Assert.IsTrue(result.Result is NotFoundResult);
