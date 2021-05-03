@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SecretSanta.Business;
 using SecretSanta.Data;
+using System;
+using SecretSanta.Api.Dto;
 
 namespace SecretSanta.Api.Controllers
 {
