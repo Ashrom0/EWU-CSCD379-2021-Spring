@@ -2,15 +2,15 @@ name: .NET
 
 on:
   push:
-    branches: [ main ]
+    branches: [ Assignment* ]
   pull_request:
-    branches: [ main ]
+    branches: [ Assignment* ]
 
 jobs:
   build:
     defaults:
       run:
-        working-directory: ./SecretSanta/
+        working-directory: ./Assignment6/
     runs-on: ubuntu-latest
 
     steps:
