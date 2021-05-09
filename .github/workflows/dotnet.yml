@@ -22,7 +22,7 @@ jobs:
       with:
         dotnet-version: 5.0.x
         
-    - name: Get Directory
+    - name: Get Dir
       run: pwd
       
     - name: Run npm
