@@ -2,11 +2,9 @@ name: .NET
 
 on:
   push:
-    branches: [ Assignment6 ]
+    branches: [ Assignment-* ]
   pull_request:
-    branches: [ Assignment6 ]
-
-  workflow_dispatch:
+    branches: [ Assignment-* ]
 
 jobs:
   build:
@@ -21,17 +19,24 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-        
-    - name: Get Dir
+    - name: Get Directory
       run: pwd
       
-    - name: Run npm
-      run: |
-        npm install
-        npm run build:prod
+    - name: npm install
+      working-directory: ./SecretSanta/src/SecretSanta.Web/
+      run: npm install
       
+    - name: npm build
+      working-directory: ./SecretSanta/src/SecretSanta.Web/
+      run: npm run build:prod
+      
+    - name: Restore dependencies
+      run: dotnet restore
     - name: Build
-      run: dotnet build
-      
+      run: dotnet build --no-restore
+    - name: List Files in Share Views directory
+      working-directory: ./SecretSanta/src/SecretSanta.Web/
+      run: ls ./Views/Shared
+
     - name: Test
-      run: dotnet test --no-build 
+      run: dotnet test --no-build --verbosity normal
