@@ -5,29 +5,59 @@ name: Azure App Service - Ashrom-EWU379-2021-Spring(Production), Build and deplo
 
 on:
   push:
-    branches:
-      - Assignment6
+    branches: [ Assignment-* ]
+  pull_request:
+    branches: [ Assignment-* ]
 
 jobs:
-  build-and-deploy:
+  build:
+    defaults:
+      run:
+        working-directory: ./SecretSanta/
     runs-on: ubuntu-latest
 
     steps:
     # checkout the repo
-    - name: 'Checkout Github Action'
-      uses: actions/checkout@master
-
-
-    - name: Set up .NET Core
+    - uses: actions/checkout@v2
+    - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.x'
+        dotnet-version: 5.0.x
+    
+    - name: npm install
+      working-directory: ./SecretSanta/src/SecretSanta.Web/
+      run: npm install
+      
+    - name: npm build
+      working-directory: ./SecretSanta/src/SecretSanta.Web/
+      run: npm run build:prod
+      
+    - name: Restore dependencies Web 
+      working-directory: ./SecretSanta/src/SecretSanta.Web/
+      run: dotnet restore
 
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
+    - name: Build Web 
+      working-directory: ./SecretSanta/src/SecretSanta.Web/
+      run: dotnet build --no-restore --configuration Release
+    
+    
+    - name: Restore dependencies API
+      working-directory: ./SecretSanta/src/SecretSanta.Api/
+      run: dotnet restore
 
-    - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+    - name: Build API 
+      working-directory: ./SecretSanta/src/SecretSanta.Api/
+      run: dotnet build --no-restore --configuration Release
+    
+    
+    - name: dotnet publish Web
+      working-directory: ./SecretSanta/src/SecretSanta.Web/
+      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/binSecretSanta
+
+    - name: dotnet publish API
+      working-directory: ./SecretSanta/src/SecretSanta.Api/
+      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/binSecretSantaApi
+      
 
     - name: Run Azure webapp deploy action using publish profile credentials
       uses: azure/webapps-deploy@v2
