@@ -19,6 +19,7 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
+        
     - name: Get Directory
       run: pwd
       
@@ -29,14 +30,44 @@ jobs:
     - name: npm build
       working-directory: ./SecretSanta/src/SecretSanta.Web/
       run: npm run build:prod
-      
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: List Files in Share Views directory
-      working-directory: ./SecretSanta/src/SecretSanta.Web/
-      run: ls ./Views/Shared
 
-    - name: Test
+    - name: Restore dependencies Web
+      working-directory: ./SecretSanta/src/SecretSanta.Web/
+      run: dotnet restore
+
+    - name: Restore dependencies Web Test
+      working-directory: ./SecretSanta/test/SecretSanta.Web.Tests/
+      run: dotnet restore
+
+    - name: Build Web
+      working-directory: ./SecretSanta/src/SecretSanta.Web/
+      run: dotnet build --no-restore
+
+    - name: Build Web Tests
+      working-directory: ./SecretSanta/test/SecretSanta.Web.Tests/
+      run: dotnet build --no-restore 
+
+    - name: Test Web
+      working-directory: ./SecretSanta/test/SecretSanta.Web.Tests/
+      run: dotnet test --no-build --verbosity normal
+
+
+    - name: Restore dependencies API
+      working-directory: ./SecretSanta/src/SecretSanta.Api/
+      run: dotnet restore
+
+    - name: Restore dependencies API Test
+      working-directory: ./SecretSanta/test/SecretSanta.Api.Tests/
+      run: dotnet restore
+
+    - name: Build API Tests
+      working-directory: ./SecretSanta/test/SecretSanta.Api.Tests/
+      run: dotnet build --no-restore 
+
+    - name: API Build
+      working-directory: ./SecretSanta/src/SecretSanta.Api/
+      run: dotnet build --no-restore
+
+    - name: API Test
+      working-directory: ./SecretSanta/test/SecretSanta.Api.Tests/
       run: dotnet test --no-build --verbosity normal
