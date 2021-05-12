@@ -5,9 +5,9 @@ name: Azure App Service - Ashrom-EWU379-2021-Spring(Production), Build and deplo
 
 on:
   push:
-    branches: [ Assignment-* ]
+    branches: [ Assignment* ]
   pull_request:
-    branches: [ Assignment-* ]
+    branches: [ Assignment* ]
 
 jobs:
   build:
@@ -17,7 +17,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # checkout the repo
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -58,6 +57,13 @@ jobs:
       working-directory: ./SecretSanta/src/SecretSanta.Api/
       run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/binSecretSantaApi
       
+    - name: Run Azure webapp deploy action using publish profile credentials
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: Ashrom-API-EWU-CSCD379-2021-Spring
+        slot-name: Production
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3F627F2BB7404129AE6DB4392A3D6398 }}
+        package: ${{env.DOTNET_ROOT}}/binSecretSantaApi
 
     - name: Run Azure webapp deploy action using publish profile credentials
       uses: azure/webapps-deploy@v2
@@ -65,5 +71,5 @@ jobs:
         app-name: Ashrom-EWU379-2021-Spring
         slot-name: Production
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9B0B6A4A6A884B28828DABA2FE8457B2 }}
-        package: ${{env.DOTNET_ROOT}}/myapp
+        package: ${{env.DOTNET_ROOT}}/binSecretSanta
 
