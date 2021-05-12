@@ -72,4 +72,3 @@ jobs:
         slot-name: Production
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_089C7E45A9F9417FAE1FC1EBE5F36BBE }}
         package: ${{env.DOTNET_ROOT}}/binSecretSanta
-
