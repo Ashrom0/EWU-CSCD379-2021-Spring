@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SecretSanta.Web.Api;
 using Microsoft.Extensions.Configuration;
+using SecretSanta.Web.Api;
 
 namespace SecretSanta.Web
 {
@@ -16,7 +16,10 @@ namespace SecretSanta.Web
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            ApiClient = new() {BaseAddress = new Uri(Configuration["ApiHost"])};
+            ApiClient = new() 
+            {
+                BaseAddress = new Uri(Configuration["ApiHost"])
+            };
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940

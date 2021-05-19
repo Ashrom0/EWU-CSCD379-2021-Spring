@@ -16,14 +16,12 @@ namespace SecretSanta.Api
             services.AddControllers();
             services.AddSwaggerDocument();
 
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                               .AllowAnyMethod()
-                               .AllowAnyHeader();
-                    });
+            services.AddCors(options => {
+              options.AddDefaultPolicy(builder => {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+              });
             });
         }
 
